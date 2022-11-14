@@ -10,6 +10,7 @@
 
     <ImageView
         android:id="@+id/imgLogo"
+        android:src="@drawable/listinlogo3"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
