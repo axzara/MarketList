@@ -11,11 +11,12 @@ import android.widget.ListView
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    private val txtFecha: TextView = findViewById(R.id.txtFechaCorte)
+   private lateinit var txtFecha : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        txtFecha = findViewById(R.id.txtFechaCorte)
         val btnMainMenu = findViewById<Button>(R.id.btnGoMainMenu)
 
         val list = findViewById<ListView>(R.id.list)
