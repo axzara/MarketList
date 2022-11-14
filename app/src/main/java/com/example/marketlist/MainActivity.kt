@@ -11,7 +11,7 @@ import android.widget.ListView
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-   private lateinit var txtFecha : TextView
+    private lateinit var txtFecha : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,12 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = ProductAdapter(this,listProducts)
         list.adapter = adapter
+
+        list.setOnItemClickListener {parent, view, position, id ->
+            val intent = Intent(this, ProductActivity::class.java)
+            intent.putExtra("product", listProducts[position])
+            startActivity(intent)
+        }
 
         btnMainMenu.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
