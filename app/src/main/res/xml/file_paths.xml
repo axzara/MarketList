@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+    Programador: Carlos Alberto Diaz Valenzuela
+    Fecha: 23 - Septiembre - 2022
+    Descrpicion: Archivo del path para las imagenes
+-->
+    <external-files-path
+        name="my_images"
+        path="." />
+</paths>
