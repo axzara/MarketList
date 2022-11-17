@@ -5,12 +5,10 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 
 import android.media.Image
-
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,12 +16,10 @@ import android.os.Environment
 import android.provider.MediaStore
 
 import android.widget.*
-
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
-
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
@@ -196,11 +192,19 @@ class CreateProduct : AppCompatActivity(), SensorEventListener {
             if (distancia.toDouble() > 0){
                 Toast.makeText(this,"Estoy lejos", Toast.LENGTH_SHORT)
             }else{
+
+                findViewById<EditText>(R.id.editTxtNombreProd).setText("")
+                findViewById<EditText>(R.id.editTxtCantidadProd).setText("")
+                findViewById<ImageView>(R.id.editImgProd).setImageResource(R.drawable.listinlogo3)
+                findViewById<EditText>(R.id.editTxtDescripcion).setText("")
+                findViewById<EditText>(R.id.editTxtPrecio).setText("")
+
                 txtProductName.setText("")
                 txtCantidad.setText("")
                 txtProductDescription.setText("")
                 txtPrecio.setText("")
                 imgProduct.setImageResource(R.drawable.ic_launcher_background)
+
                 Toast.makeText(this,"Estoy cerca", Toast.LENGTH_SHORT)
             }
         }
