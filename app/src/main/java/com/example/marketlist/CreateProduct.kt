@@ -184,11 +184,11 @@ class CreateProduct : AppCompatActivity(), SensorEventListener {
             if (distancia.toDouble() > 0){
                 Toast.makeText(this,"Estoy lejos", Toast.LENGTH_SHORT)
             }else{
-                txtProductName.setText("")
-                txtCantidad.setText("")
-                txtProductDescription.setText("")
-                txtPrecio.setText("")
-                imgProduct.setImageResource(R.drawable.ic_launcher_background)
+                findViewById<EditText>(R.id.editTxtNombreProd).setText("")
+                findViewById<EditText>(R.id.editTxtCantidadProd).setText("")
+                findViewById<ImageView>(R.id.editImgProd).setImageResource(R.drawable.listinlogo3)
+                findViewById<EditText>(R.id.editTxtDescripcion).setText("")
+                findViewById<EditText>(R.id.editTxtPrecio).setText("")
                 Toast.makeText(this,"Estoy cerca", Toast.LENGTH_SHORT)
             }
         }
