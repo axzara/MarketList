@@ -36,13 +36,6 @@ class CreateProduct : AppCompatActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
 
-    private lateinit var txtProductName: EditText
-    private lateinit var txtCantidad: EditText
-    private lateinit var imgProduct: ImageView
-    private lateinit var txtProductDescription: EditText
-    private lateinit var txtPrecio: EditText
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_product)
@@ -78,7 +71,7 @@ class CreateProduct : AppCompatActivity(), SensorEventListener {
             val desc = descripcion.text.toString()
             val price = precio.text.toString().toDouble()
 
-            val product = Product(nom, desc, cant, price, R.drawable.ic_launcher_background)
+            val product = Product(nom, desc, cant, price, R.drawable.listinlogo3)
 
             if(idProduct!=null){
                 CoroutineScope(Dispatchers.IO).launch {

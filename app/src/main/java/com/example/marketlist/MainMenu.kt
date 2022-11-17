@@ -10,10 +10,14 @@ class MainMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
         val btnCreateProduct = findViewById<Button>(R.id.button3)
-
-
+        val viewList = findViewById<Button>(R.id.button)
+        
         btnCreateProduct.setOnClickListener {
             val intent = Intent(this, CreateProduct::class.java)
+            startActivity(intent)
+        }
+        viewList.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
