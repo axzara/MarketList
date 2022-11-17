@@ -3,6 +3,7 @@ package com.example.marketlist
 import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
+
 import android.media.Image
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+
 import android.widget.*
 import android.widget.EditText
 import android.widget.ImageButton
@@ -46,6 +48,12 @@ class CreateProduct : AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_product)
+
+        txtProductName = findViewById(R.id.txtNombreProd)
+        txtCantidad = findViewById(R.id.txtCantidadProd)
+        imgProduct = findViewById(R.id.imgProd)
+        txtProductDescription = findViewById(R.id.editTxtDescripcion)
+        txtPrecio = findViewById(R.id.editTxtPrecio)
 
         val btnCamera = findViewById<ImageButton>(R.id.btnCamera)
         val btnGuardar = findViewById<Button>(R.id.btnGuardar)
@@ -184,11 +192,19 @@ class CreateProduct : AppCompatActivity(), SensorEventListener {
             if (distancia.toDouble() > 0){
                 Toast.makeText(this,"Estoy lejos", Toast.LENGTH_SHORT)
             }else{
+
                 findViewById<EditText>(R.id.editTxtNombreProd).setText("")
                 findViewById<EditText>(R.id.editTxtCantidadProd).setText("")
                 findViewById<ImageView>(R.id.editImgProd).setImageResource(R.drawable.listinlogo3)
                 findViewById<EditText>(R.id.editTxtDescripcion).setText("")
                 findViewById<EditText>(R.id.editTxtPrecio).setText("")
+
+                txtProductName.setText("")
+                txtCantidad.setText("")
+                txtProductDescription.setText("")
+                txtPrecio.setText("")
+                imgProduct.setImageResource(R.drawable.ic_launcher_background)
+
                 Toast.makeText(this,"Estoy cerca", Toast.LENGTH_SHORT)
             }
         }
