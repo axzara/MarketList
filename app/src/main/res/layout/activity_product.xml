@@ -7,15 +7,16 @@
     tools:context=".ProductActivity">
 
     <TextView
-        android:id="@+id/txtNombreProd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/editTxtNombreProd"
+        android:layout_width="247dp"
+        android:layout_height="33dp"
         android:layout_marginTop="31dp"
         android:layout_marginBottom="9dp"
         android:text="Nombre"
+        android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtCantidadProd"
+        app:layout_constraintBottom_toTopOf="@+id/editTxtCantidadProd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,8 +28,8 @@
         android:layout_marginBottom="347dp"
         android:text="Descripcion..."
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imgProd"
-        app:layout_constraintTop_toBottomOf="@+id/imgProd" />
+        app:layout_constraintStart_toStartOf="@+id/editImgProd"
+        app:layout_constraintTop_toBottomOf="@+id/editImgProd" />
 
     <TextView
         android:id="@+id/txtPrecioProd"
@@ -36,23 +37,25 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="318dp"
         android:text="$0.00"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtDescripcionProd"
-        app:layout_constraintTop_toBottomOf="@+id/imgProd" />
+        app:layout_constraintTop_toBottomOf="@+id/editImgProd" />
 
     <TextView
-        android:id="@+id/txtCantidadProd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:id="@+id/editTxtCantidadProd"
+        android:layout_width="251dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="11dp"
         android:text="Cantidad"
-        app:layout_constraintBottom_toTopOf="@+id/imgProd"
-        app:layout_constraintStart_toStartOf="@+id/txtNombreProd"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombreProd" />
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/editImgProd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtNombreProd" />
 
     <ImageView
-        android:id="@+id/imgProd"
+        android:id="@+id/editImgProd"
         android:layout_width="250dp"
         android:layout_height="0dp"
         android:layout_marginTop="102dp"

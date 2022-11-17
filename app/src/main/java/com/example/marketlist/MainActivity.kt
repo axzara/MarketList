@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
+import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
     private lateinit var txtFecha : TextView
@@ -21,23 +22,18 @@ class MainActivity : AppCompatActivity() {
 
         val list = findViewById<ListView>(R.id.list)
 
-        val product = Product("Prod1", "Desc1" , 3,200.5, R.drawable.ic_launcher_background )
-        val product2 = Product("Prod2", "Desc2" , 10,15.0, R.drawable.ic_launcher_background )
-        val product3 = Product("Prod2", "Desc2" , 10,15.0, R.drawable.ic_launcher_background )
-        val product4 = Product("Prod2", "Desc2" , 10,15.0, R.drawable.ic_launcher_background )
-        val product5 = Product("Prod2", "Desc2" , 10,15.0, R.drawable.ic_launcher_background )
-        val product6 = Product("Prod2", "Desc2" , 10,15.0, R.drawable.ic_launcher_background )
-        val product7 = Product("Prod2", "Desc2" , 10,15.0, R.drawable.ic_launcher_background )
-        val product8 = Product("Prod2", "Desc2" , 10,15.0, R.drawable.ic_launcher_background )
+        var listProducts = emptyList<Product>()
 
-        val listProducts = listOf(product,product2,product3,product4,product5,product6,product7,product8)
-
-        val adapter = ProductAdapter(this,listProducts)
-        list.adapter = adapter
+        val database = AppDatabase.getDatabase(this)
+        database.products().getAll().observe(this, Observer {
+            listProducts = it
+            val adapter = ProductAdapter(this,listProducts)
+            list.adapter = adapter
+        })
 
         list.setOnItemClickListener {parent, view, position, id ->
             val intent = Intent(this, ProductActivity::class.java)
-            intent.putExtra("product", listProducts[position])
+            intent.putExtra("id", listProducts[position].idProduct)
             startActivity(intent)
         }
 

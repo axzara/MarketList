@@ -14,7 +14,9 @@ class ProductAdapter(private val mContext: Context, private val listProducts: Li
         val product = listProducts[position]
         layout.findViewById<TextView>(R.id.txtNombre).text = product.nombre
         layout.findViewById<TextView>(R.id.txtCantidad).text = "${product.cantidad} pzs"
-        layout.findViewById<ImageView>(R.id.imageView).setImageResource(product.imagen)
+        val photoUri = ImageController.getPhotoUri(mContext,product.idProduct.toLong())
+        layout.findViewById<ImageView>(R.id.imageView).setImageURI(photoUri)
+
 
         return layout
     }
