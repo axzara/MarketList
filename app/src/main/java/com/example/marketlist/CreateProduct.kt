@@ -3,11 +3,16 @@ package com.example.marketlist
 import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
@@ -19,12 +24,28 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CreateProduct : AppCompatActivity() {
+class CreateProduct : AppCompatActivity(), SensorEventListener {
     lateinit var currentPhotoPath: String
+
+    private lateinit var sensorManager: SensorManager
+    private var sensor: Sensor? = null
+
+    private lateinit var txtProductName: EditText
+    private lateinit var txtCantidad: EditText
+    private lateinit var imgProduct: ImageView
+    private lateinit var txtProductDescription: EditText
+    private lateinit var txtPrecio: EditText
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_product)
+
+        txtProductName = findViewById(R.id.txtNombreProd)
+        txtCantidad = findViewById(R.id.txtCantidadProd)
+        imgProduct = findViewById(R.id.imgProd)
+        txtProductDescription = findViewById(R.id.editTxtDescripcion)
+        txtPrecio = findViewById(R.id.editTxtPrecio)
 
         val btnCamera = findViewById<ImageButton>(R.id.btnCamera)
 
@@ -53,8 +74,10 @@ class CreateProduct : AppCompatActivity() {
                     }
                 }
             }
-
         }
+
+        //Metodo del sensor
+        setUpSensorStuff()
     }
 
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result: ActivityResult ->
@@ -85,5 +108,49 @@ class CreateProduct : AppCompatActivity() {
             //Guardamos un archivo:
             currentPhotoPath = absolutePath
         }
+    }
+
+    //METODOS DEL SENSOR
+
+    private fun setUpSensorStuff() {
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)?.also {
+            sensorManager.registerListener(
+                this,
+                sensor,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
+        }
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        if (event?.sensor?.type == Sensor.TYPE_PROXIMITY){
+            var distancia = event.values[0]
+
+            if (distancia.toDouble() > 0){
+                Toast.makeText(this,"Estoy lejos", Toast.LENGTH_SHORT)
+            }else{
+                txtProductName.setText("")
+                txtCantidad.setText("")
+                txtProductDescription.setText("")
+                txtPrecio.setText("")
+                imgProduct.setImageResource(R.drawable.ic_launcher_background)
+                Toast.makeText(this,"Estoy cerca", Toast.LENGTH_SHORT)
+            }
+        }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        return
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(this, )
     }
 }
