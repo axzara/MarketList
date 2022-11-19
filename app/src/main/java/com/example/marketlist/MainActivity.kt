@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         txtFecha = findViewById(R.id.txtFechaCorte)
         val btnMainMenu = findViewById<Button>(R.id.btnGoMainMenu)
+        val btnMyLocations = findViewById<Button>(R.id.btnGoLocations)
+
 
         val list = findViewById<ListView>(R.id.list)
 
@@ -39,6 +41,10 @@ class MainActivity : AppCompatActivity() {
 
         btnMainMenu.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
+        btnMyLocations.setOnClickListener(){
+            val intent = Intent(this, MyLocations::class.java)
             startActivity(intent)
         }
 

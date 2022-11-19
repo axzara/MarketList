@@ -38,13 +38,19 @@ class CreateProduct : AppCompatActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
 
+    private lateinit var txtProductName: EditText
+    private lateinit var txtCantidad: EditText
+    private lateinit var imgProduct: ImageView
+    private lateinit var txtProductDescription: EditText
+    private lateinit var txtPrecio: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_product)
 
-        txtProductName = findViewById(R.id.txtNombreProd)
-        txtCantidad = findViewById(R.id.txtCantidadProd)
-        imgProduct = findViewById(R.id.imgProd)
+        txtProductName = findViewById(R.id.editTxtNombreProd)
+        txtCantidad = findViewById(R.id.editTxtCantidadProd)
+        imgProduct = findViewById(R.id.editImgProd)
         txtProductDescription = findViewById(R.id.editTxtDescripcion)
         txtPrecio = findViewById(R.id.editTxtPrecio)
 
